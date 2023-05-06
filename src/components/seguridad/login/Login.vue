@@ -26,6 +26,9 @@
 </template>
 
 <script>
+
+import { signIn } from '../../../domain/http/Autenticacion/AutenticacionAction';
+
 export default {
   
    name: 'LoginComponent',
@@ -37,9 +40,22 @@ export default {
  },
  methods: {   
 
- signIn(){
-   console.log(this.email)
-   this.$router.push("/home")
+ signIn: async function (){
+   
+   const objReq = {
+      email: this.email,
+      password: this.password
+   };
+
+   const { data, status } = await signIn(objReq);
+   
+    if(status === 200){
+       
+      this.$router.push("/home")
+
+    }else{
+
+    }
  }
 
 },
