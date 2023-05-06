@@ -19,7 +19,7 @@
       <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
       <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
     </ul>
-    <h3>Ecosystem</h3>
+    <h3 class="text-purple-600"> {{ lo }} eder test Ecosystem</h3>
     <ul>
       <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
       <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
@@ -31,12 +31,40 @@
 </template>
 
 <script>
+
+import axios from 'axios'; 
+
 export default {
+  
   name: 'HelloWorld',
-  props: {
-    msg: String
+  data: function () {
+  return {
+    count: 0,
+    lo:'hvvyvyuvyuvyuvyuvy'
   }
+},
+  props: {
+    msg: String,
+  
+  },
+  mounted(){
+    this.getList();
+  },
+  methods: {   
+
+   async getList(){
+      await axios.get("http://localhost:8000/api/equipo/list")
+    }
+
+  },
+ 
+
+
 }
+
+
+
+
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
