@@ -3,10 +3,29 @@
 </template>
 
 <script>
+//{{ JSON.stringify(store.state.sesionUser) }}
+var store = {
+   debug: true,
+   state: {
+    sesionUser:{
+       user: { fullName:"", email:"", userId:"" },
+       auth: false
+   }
+  },
+   setStateSessionUser(newValue) {
+     this.state.sesionUser = {...newValue}
+   },
+   clearStateSessionUser () {
+     this.state.sesionUser = { user: { fullName:"", email:"", userId:"" },
+       auth: false }
+   }
+ }
 
 export default {
   name: 'App',
-
+  data:() => ({
+    store: store
+  })
 }
 </script>
 

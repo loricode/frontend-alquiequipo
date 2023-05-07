@@ -7,7 +7,9 @@
         <li>
            <h1 class="font-bold text-xl">Menu</h1> 
            <ul class="text-start font-semibold mt-2 pl-2 space-y-1 list-inside">
-             <li @click="goPage" class="hover:bg-gray-300 cursor-pointer">Equipos</li>
+             <li @click="goPage" class="hover:bg-gray-300 cursor-pointer">
+              <router-link to="/consulta">Listado Equipos</router-link>
+            </li>
              <li>Vista 2</li>
              <li>Vista 3</li>
            </ul>

@@ -13,6 +13,7 @@
 
         <input class="p-2 mb-3 w-full border-gray-500 border rounded" 
           v-model="password"
+          type="password"
           placeholder="Password"
         />
 
@@ -41,19 +42,28 @@ export default {
  methods: {   
 
  signIn: async function (){
-   
+
    const objReq = {
       email: this.email,
       password: this.password
    };
 
    const { data, status } = await signIn(objReq);
-   
-    if(status === 200){
-       
-      this.$router.push("/home")
 
-    }else{
+    if(status === 200){
+
+      this.$root.store.setStateSessionUser({
+        user: { 
+           fullName:data.fullName, 
+           email:data.email,
+           userId:"" 
+        },
+        auth: true
+      });
+      
+      localStorage.setItem("token_seguridad", data.token);
+
+      this.$router.push("/home")
 
     }
  }

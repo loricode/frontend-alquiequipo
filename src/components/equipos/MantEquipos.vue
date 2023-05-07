@@ -23,11 +23,46 @@
 
       <div class="w-full bg-white p-2 shadow-lg shadow-black/15 rounded">
 
-         <div class="flex flex-row">
- 
-            <input class="p-2 m-1 mb-3 w-full border-gray-500 border rounded" placeholder="Nombre" />
-            <input class="p-2 m-1 mb-3 w-full border-gray-500 border rounded" placeholder="Descripcion" />
-            <input class="p-2 m-1 mb-3 w-full border-gray-500 border rounded" placeholder="categoria"/>
+         <div class="flex flex-row flex-wrap">
+           
+            <div class="md:w-6/12 p-1">
+              <input
+               v-model="formValues.code"
+               class="p-2 m-1 w-full border-gray-500 border rounded"
+               placeholder="Codigo" />
+            </div>   
+         
+            <div class="md:w-6/12 p-1">
+              <input
+               v-model="formValues.name" 
+               class="p-2 m-1 w-full border-gray-500 border rounded"
+               placeholder="Nombre"/>
+            </div>
+
+            <div class="md:w-6/12 p-1">
+              <input
+                v-on:change="handleChange" 
+                type="file"
+                accept="image/*"
+                class="p-5px m-1 w-full border-gray-500 border rounded"
+                placeholder="Imagen"/>
+            </div>
+
+            <div class="md:w-6/12 p-1">
+               <input 
+                v-model="formValues.quantity"
+                 class="p-2 m-1 w-full border-gray-500 border rounded" 
+                 placeholder="Cantidad" />
+            </div>
+
+            <div class="md:w-full p-1">
+              <textarea 
+              v-model="formValues.description"
+               class="p-1 m-1 w-full border-gray-500 border rounded"
+               placeholder="Descripcion"></textarea>
+            </div>
+   
+
 
          </div>
 
@@ -41,9 +76,18 @@
 <script>
   export default {
    name:"MantEquiposComponent",
+   data:() =>({
+     formValues:{
+       name:"",
+       code:"", 
+      description:"", image:"", quantity:"" }
+   }),
    methods:{
       regresar(){
         this.$router.back()
+      },
+      handleChange(event){
+        console.log(event)
       }
    }
  }

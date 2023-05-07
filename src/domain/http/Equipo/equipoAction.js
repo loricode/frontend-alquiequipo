@@ -1,18 +1,19 @@
-import httpPublicEquipo from '../../../infrastructure/service/httpPublicService';
+import httpSeguroEquipo from '../../../infrastructure/service/httpSeguroEquipoService';
 
 /**
  * login para ingresar a la aplicacion 
  * @param {{emial:string}} objReq 
- * @returns {Promise<{ data:{}, status:number }>}
+ * @returns {Promise<{ data:Array<{ name:string, quantity:string, codeEquipo:string, description:string }>, status:number }>}
  */
-export const signIn = ( objReq ) => {
+export const obtnerListadoEquipo = ( objReq ) => {
 
   return new Promise((resolve) => {
-   
-     httpPublicEquipo.post("login/signIn", objReq).then(response => {
-       resolve(response)
+    httpSeguroEquipo.get("equipo/listEquipo", objReq).then(response => {
+       
+      resolve(response);
+
      }).catch(err => {
-       resolve(err.response)
+       resolve(err.response);
      })
 
   });
